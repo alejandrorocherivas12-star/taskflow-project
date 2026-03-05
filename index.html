@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Tareas Interactiva</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Taskflow</h1>
+    </header>
+
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Tareas</a></li>
+                <li><a href="#">Categorías</a></li>
+                <li><a href="#">Ajustes</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <section class="tareas">
+            <h2>Lista de Tareas</h2>
+
+            <!-- Formulario para añadir tareas -->
+            <form id="form-tarea">
+                <input type="text" id="input-tarea" placeholder="Escribe una nueva tarea..." required>
+                <select id="select-prioridad">
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+                <button type="submit">Añadir</button>
+            </form>
+
+            <!-- Buscador de tareas -->
+            <input type="text" id="buscar-tarea" placeholder="Buscar tarea...">
+
+            <div id="lista-tareas">
+                <!-- Aquí se renderizarán las tareas dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
