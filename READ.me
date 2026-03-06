@@ -1,0 +1,108 @@
+TaskFlow / Tasklist
+Descripción
+
+TaskFlow es una aplicación web simple de gestión de tareas con:
+
+Creación de tareas con prioridad (alta, media, baja).
+
+Modo oscuro que se recuerda en el navegador.
+
+Buscador de tareas en tiempo real.
+
+Persistencia de datos usando localStorage (no requiere servidor).
+
+Interfaz moderna con Tailwind CSS, animaciones y efectos hover.
+
+🖥️ Vista previa
+
+Barra lateral con navegación: Inicio, Tareas, Categorías, Ajustes.
+
+Formulario para añadir tareas con prioridad.
+
+Lista de tareas con colores según prioridad:
+
+🔴 Alta
+
+🟡 Media
+
+🟢 Baja
+
+Botón de Modo Oscuro que alterna el tema y lo guarda.
+
+Buscador para filtrar tareas en tiempo real.
+
+🚀 Tecnologías utilizadas
+
+HTML5 – Estructura del contenido
+
+Tailwind CSS – Estilos y animaciones
+
+JavaScript – Lógica de tareas, modo oscuro y búsqueda
+
+localStorage – Guardado de tareas y estado de modo oscuro
+
+Opcionalmente, se puede migrar a React + Tailwind para hacer un proyecto más profesional.
+
+⚙️ Cómo usar
+
+Abrir la página:
+
+Solo abre el archivo index.html en cualquier navegador moderno.
+
+Añadir tareas:
+
+Escribe la tarea en el campo “Nueva tarea…”
+
+Selecciona la prioridad (alta, media, baja)
+
+Presiona “Añadir”
+
+Eliminar tareas:
+
+Haz clic en la “✖” junto a la tarea que quieras eliminar.
+
+Buscar tareas:
+
+Escribe en el campo “Buscar…” para filtrar la lista en tiempo real.
+
+Modo oscuro:
+
+Haz clic en “Modo Oscuro” en la barra lateral.
+
+El tema se guarda en el navegador y se recuerda al recargar la página.
+
+📝 Estructura de archivos
+project/
+│
+├── index.html          ← Página principal
+├── script.js           ← Lógica de tareas y modo oscuro
+├── style.css           ← Tailwind CSS (si no usas CDN)
+├── README.md           ← Este archivo
+
+Nota: Si usas Tailwind CDN, no necesitas style.css.
+
+💡 Personalización
+
+Cambia los colores de prioridad editando las clases Tailwind:
+
+border-red-500 → alta
+
+border-yellow-400 → media
+
+border-green-500 → baja
+
+Cambia el tema oscuro modificando clases en Tailwind con dark:
+
+🛠️ Requisitos
+
+Navegador moderno (Chrome, Edge, Firefox, Safari)
+
+No se requiere servidor ni instalación
+
+📌 Extra
+
+Los datos de tareas y modo oscuro se guardan en localStorage, así que si cierras y abres el navegador, tu información se mantiene.
+
+La aplicación es responsiva y funciona en dispositivos móviles y escritorio.
+
+Enlace del Proyecto: [https://taskflow-project-ofx2.vercel.app/]
