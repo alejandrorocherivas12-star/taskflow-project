@@ -7,7 +7,12 @@ const buscarTarea = document.getElementById('buscar-tarea');
 // Botón modo oscuro
 const toggle = document.getElementById('toggle-dark');
 const html = document.documentElement;
-
+module.exports = {
+  darkMode: 'class', // 👈 importante, ya que usas toggle por clase
+  content: ["./index.html", "./**/*.js"],
+  theme: { extend: {} },
+  plugins: [],
+}
 // Cargar preferencia guardada
 if (localStorage.getItem('modoOscuro') === 'activo') {
     html.classList.add('dark');

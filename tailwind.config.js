@@ -1,9 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: 'class', // 👈 ESTA LÍNEA ES LA CLAVE
-  content: ["./*.html", "./*.js"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './app.js'
+import './index.css'   // 👈 AQUÍ va Tailwind
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
