@@ -10,6 +10,7 @@
   --color-baja: #22c55e;
   --sombra-tarjeta: rgba(0, 0, 0, 0.05);
   --sombra-hover: rgba(0, 0, 0, 0.1);
+  
 }
 
 /* ========================= MODO OSCURO ========================= */
@@ -26,12 +27,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--color-fondo);
-  color: var(--color-texto);
-  display: flex;
-}
 
 /* ========================= SIDEBAR ========================= */
 .sidebar {

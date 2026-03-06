@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" class="bg-gray-200 text-gray-800">
+<html lang="es" class="transition-colors duration-300">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App de Tareas Tailwind</title>
+  <title>App de Tareas - Tailwind Dark Mode</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex min-h-screen">
+<body class="flex min-h-screen bg-gray-200 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
 
   <!-- Sidebar -->
-  <aside class="w-60 fixed h-full bg-gradient-to-b from-blue-600 to-blue-700 text-white p-6 shadow-lg">
+  <aside class="w-60 fixed h-full bg-gradient-to-b from-blue-600 to-blue-700 dark:from-gray-800 dark:to-gray-900 text-white p-6 shadow-lg transition-colors duration-300">
     <h1 class="text-3xl font-bold mb-10">Tasklist</h1>
     <nav>
       <ul class="space-y-4">
@@ -19,29 +19,111 @@
         <li><a href="#" class="font-bold hover:text-blue-200 transition">Ajustes</a></li>
       </ul>
     </nav>
-    <button id="toggle-dark" class="mt-6 px-4 py-2 bg-white/20 backdrop-blur rounded hover:bg-white/30 transition">
+    <button id="toggle-dark" class="mt-6 px-4 py-2 bg-white/20 dark:bg-gray-700/30 rounded hover:bg-white/30 dark:hover:bg-gray-700/50 transition">
       Modo Oscuro
     </button>
   </aside>
 
   <!-- Main -->
-  <main class="flex-1 ml-60 p-6">
+  <main class="flex-1 ml-60 p-6 transition-colors duration-300">
+    <!-- Formulario -->
     <form id="form-tarea" class="flex gap-4 mb-4">
-      <input type="text" id="input-tarea" placeholder="Nueva tarea..." class="flex-1 p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm">
-      <select id="select-prioridad" class="p-3 rounded-lg border border-gray-300">
+      <input type="text" id="input-tarea" placeholder="Nueva tarea..." class="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 transition">
+      <select id="select-prioridad" class="p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100">
         <option value="alta">Alta</option>
         <option value="media">Media</option>
         <option value="baja">Baja</option>
       </select>
-      <button type="submit" class="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:scale-105 transition shadow">Añadir</button>
+      <button type="submit" class="px-5 py-3 bg-blue-600 dark:bg-blue-800 text-white rounded-lg hover:bg-blue-700 hover:dark:bg-blue-900 transition">Añadir</button>
     </form>
 
-    <input type="text" id="buscar-tarea" placeholder="Buscar..." class="w-full p-3 mb-4 rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 shadow-sm">
+    <!-- Buscador -->
+    <input type="text" id="buscar-tarea" placeholder="Buscar..." class="w-full p-3 mb-4 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 transition">
 
+    <!-- Lista de tareas -->
     <div id="lista-tareas" class="space-y-3"></div>
   </main>
 
-  <!-- Conectar JS -->
-  <script src="app.js" defer></script>
+  <!-- JS -->
+  <script>
+    // Referencias
+    const toggle = document.getElementById('toggle-dark');
+    const html = document.documentElement;
+    const formTarea = document.getElementById('form-tarea');
+    const inputTarea = document.getElementById('input-tarea');
+    const selectPrioridad = document.getElementById('select-prioridad');
+    const listaTareas = document.getElementById('lista-tareas');
+    const buscarTarea = document.getElementById('buscar-tarea');
+
+    // --- Modo Oscuro ---
+    if(localStorage.getItem('modoOscuro') === 'activo') html.classList.add('dark');
+
+    toggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      if(html.classList.contains('dark')) localStorage.setItem('modoOscuro','activo');
+      else localStorage.removeItem('modoOscuro');
+    });
+
+    // --- Tareas ---
+    let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
+
+    function guardarTareas() {
+      localStorage.setItem('tareas', JSON.stringify(tareas));
+    }
+
+    function renderTareas(filtro='') {
+      listaTareas.innerHTML = '';
+      tareas.filter(t => t.texto.toLowerCase().includes(filtro.toLowerCase()))
+            .forEach((tarea,index) => {
+        const div = document.createElement('div');
+
+        let prioridad = '';
+        if(tarea.prioridad==='alta') prioridad='border-l-4 border-red-500';
+        if(tarea.prioridad==='media') prioridad='border-l-4 border-yellow-400';
+        if(tarea.prioridad==='baja') prioridad='border-l-4 border-green-500';
+
+        div.className = `
+          flex justify-between items-center p-4 rounded shadow ${prioridad}
+          bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100
+          transition transform hover:-translate-y-1 hover:shadow-lg
+        `;
+
+        div.innerHTML = `
+          <div>
+            <h3 class="font-semibold text-lg">${tarea.texto}</h3>
+            <span class="text-sm text-gray-500 dark:text-gray-300">Prioridad: ${tarea.prioridad}</span>
+          </div>
+          <button class="btn-eliminar px-3 py-1 bg-red-500 dark:bg-red-600 text-white rounded hover:bg-red-600 dark:hover:bg-red-700 hover:scale-110 transition">✖</button>
+        `;
+
+        // Eliminar tarea
+        div.querySelector('.btn-eliminar').addEventListener('click', () => {
+          tareas.splice(index,1);
+          guardarTareas();
+          renderTareas(buscarTarea.value);
+        });
+
+        listaTareas.appendChild(div);
+      });
+    }
+
+    // Añadir tarea
+    formTarea.addEventListener('submit', e => {
+      e.preventDefault();
+      const texto = inputTarea.value.trim();
+      if(!texto) return;
+      tareas.push({texto, prioridad: selectPrioridad.value});
+      guardarTareas();
+      renderTareas(buscarTarea.value);
+      inputTarea.value = '';
+    });
+
+    // Buscar tareas
+    buscarTarea.addEventListener('input', e => renderTareas(e.target.value));
+
+    // Inicializar
+    renderTareas();
+  </script>
+
 </body>
 </html>
