@@ -1,203 +1,240 @@
-/* Variables CSS */
+/* ========================= VARIABLES ========================= */
 :root {
-    --color-principal: #4a90e2;
-    --color-secundario: #fff;
-    --color-fondo: #f4f4f9;
-    --color-texto: #333;
-
-    --color-prioridad-alta: #e74c3c;
-    --color-prioridad-media: #f1c40f;
-    --color-prioridad-baja: #2ecc71;
-
-    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --espaciado: 16px;
+  --color-principal: #3b82f6;
+  --color-principal-hover: #2563eb;
+  --color-fondo: #f3f4f6; /* gris muy claro */
+  --color-tarjeta: #e5e7eb; /* gris claro para tarjetas */
+  --color-texto: #1f2937;
+  --color-alta: #ef4444;
+  --color-media: #f59e0b;
+  --color-baja: #22c55e;
+  --sombra-tarjeta: rgba(0, 0, 0, 0.05);
+  --sombra-hover: rgba(0, 0, 0, 0.1);
 }
 
-/* Reset */
+/* ========================= MODO OSCURO ========================= */
+.dark {
+  --color-fondo: #0f172a;
+  --color-tarjeta: #1e293b; 
+  --color-texto: #e5e7eb;
+}
+
+/* ========================= RESET ========================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--fuente-principal);
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    display: flex;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  display: flex;
 }
 
-/* Header */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 16px;
-    background-color: var(--color-principal);
-    color: var(--color-secundario);
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
-
-/* Sidebar */
+/* ========================= SIDEBAR ========================= */
 .sidebar {
-    width: 200px;
-    background-color: var(--color-secundario);
-    padding-top: 80px; /* espacio por header */
-    height: 100vh;
-    border-right: 1px solid #ddd;
-    position: fixed;
-    top: 0;
-    left: 0;
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  padding: 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  border-radius: 0 20px 20px 0;
 }
 
 .sidebar ul {
-    list-style: none;
+  list-style: none;
 }
 
 .sidebar li {
-    margin: var(--espaciado) 0;
+  margin-bottom: 18px;
 }
 
 .sidebar a {
-    text-decoration: none;
-    color: var(--color-texto);
-    font-weight: bold;
-    display: block;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background 0.2s;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 12px;
+  display: block;
+  border-radius: 12px;
+  transition: all 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: var(--color-principal);
-    color: var(--color-secundario);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
 }
 
-/* Main */
+/* ========================= BOTON DARK MODE ========================= */
+#toggle-dark {
+  margin-top: 30px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f3f4f6; /* gris suave */
+  color: #1f2937;
+  transition: all 0.3s;
+}
+
+#toggle-dark:hover {
+  background: #e5e7eb;
+  color: #111;
+}
+
+/* ========================= MAIN ========================= */
 main {
-    margin-left: 200px;
-    padding: 100px 20px 20px 20px;
-    flex: 1;
+  margin-left: 220px;
+  padding: 40px;
+  flex: 1;
 }
 
-/* Formulario */
-form#form-tarea {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
+/* ========================= TITULO ========================= */
+header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
 }
 
-form#form-tarea input,
-form#form-tarea select {
-    padding: 8px;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    flex: 1;
+/* ========================= FORMULARIO ========================= */
+#form-tarea {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-form#form-tarea button {
-    padding: 8px 16px;
-    background-color: var(--color-principal);
-    color: var(--color-secundario);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
+#form-tarea input,
+#form-tarea select {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background: var(--color-tarjeta);
+  color: var(--color-texto);
+  transition: all 0.2s;
 }
 
-form#form-tarea button:hover {
-    background-color: #357abd;
+#form-tarea input:focus,
+#form-tarea select:focus {
+  outline: none;
+  border-color: var(--color-principal);
+  box-shadow: 0 0 6px var(--color-principal);
 }
 
-/* Buscador */
+#form-tarea input {
+  flex: 1;
+}
+
+#form-tarea button {
+  background: var(--color-principal);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#form-tarea button:hover {
+  background: var(--color-principal-hover);
+  transform: translateY(-2px);
+}
+
+/* ========================= BUSCADOR ========================= */
 #buscar-tarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 25px;
+  background: var(--color-tarjeta);
+  color: var(--color-texto);
+  transition: all 0.2s;
 }
 
-/* Lista de tareas */
+#buscar-tarea:focus {
+  outline: none;
+  border-color: var(--color-principal);
+  box-shadow: 0 0 6px var(--color-principal);
+}
+
+/* ========================= TARJETAS ========================= */
 .tarjeta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 8px;
-    background-color: var(--color-secundario);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 12px;
-    transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-tarjeta);
+  padding: 16px 20px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 16px var(--sombra-tarjeta);
+  transition: all 0.3s;
 }
 
 .tarjeta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px var(--sombra-hover);
 }
 
 .tarjeta h3 {
-    font-size: 1.1rem;
-    margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.categoria {
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* Badges de prioridad */
+/* ========================= PRIORIDADES ========================= */
 .tarea-prioridad-alta {
-    border-left: 5px solid var(--color-prioridad-alta);
+  border-left: 6px solid var(--color-alta);
 }
-
 .tarea-prioridad-media {
-    border-left: 5px solid var(--color-prioridad-media);
+  border-left: 6px solid var(--color-media);
 }
-
 .tarea-prioridad-baja {
-    border-left: 5px solid var(--color-prioridad-baja);
+  border-left: 6px solid var(--color-baja);
 }
 
+/* ========================= BOTON ELIMINAR ========================= */
 .btn-eliminar {
-    background: #e74c3c;
-    border: none;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.2s;
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
 }
 
 .btn-eliminar:hover {
-    background: #c0392b;
+  background: #dc2626;
+  transform: scale(1.05);
 }
 
-/* Media Queries para móviles */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
+/* ========================= RESPONSIVE ========================= */
+@media(max-width:768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
 
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding-top: 0;
-        border-right: none;
-    }
+  main {
+    margin-left: 0;
+    padding: 20px;
+  }
 
-    main {
-        margin-left: 0;
-        padding-top: 20px;
-    }
+  #form-tarea {
+    flex-direction: column;
+  }
+
+  #form-tarea button {
+    width: 100%;
+  }
 }

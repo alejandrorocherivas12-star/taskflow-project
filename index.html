@@ -1,51 +1,99 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="bg-gray-200 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App de Tareas Interactiva</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App de Tareas Tailwind</title>
+  <link rel="stylesheet" href="dist/style.css">
 </head>
-<body>
-    <header>
-        <h1>Taskflow</h1>
-    </header>
+<body class="flex min-h-screen text-lg">
+    <div class="absolute top-0 left-0 w-full h-[72px] bg-blue-600"></div>
+  <!-- Sidebar -->
+  <aside class="w-60 shadow-lg fixed h-full bg-gradient-to-b from-blue-600 to-blue-700 text-white flex flex-col">
 
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Tareas</a></li>
-                <li><a href="#">Categorías</a></li>
-                <li><a href="#">Ajustes</a></li>
-            </ul>
-        </nav>
-    </aside>
+  <!-- Título arriba -->
+  <div class="text-3xl font-bold px-6 py-4 border-b border-blue-500">
+    Tasklist
+  </div>
 
-    <main>
-        <section class="tareas">
-            <h2>Lista de Tareas</h2>
+  <!-- Menú abajo -->
+  <nav class="mt-4">
+  <ul class="space-y-2 text-lg">
 
-            <!-- Formulario para añadir tareas -->
-            <form id="form-tarea">
-                <input type="text" id="input-tarea" placeholder="Escribe una nueva tarea..." required>
-                <select id="select-prioridad">
-                    <option value="alta">Alta</option>
-                    <option value="media">Media</option>
-                    <option value="baja">Baja</option>
-                </select>
-                <button type="submit">Añadir</button>
-            </form>
+    <li>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-blue-500 hover:translate-x-1">
+        🏠 Inicio
+      </a>
+    </li>
 
-            <!-- Buscador de tareas -->
-            <input type="text" id="buscar-tarea" placeholder="Buscar tarea...">
+    <li>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-blue-500 hover:translate-x-1">
+        📋 Tareas
+      </a>
+    </li>
 
-            <div id="lista-tareas">
-                <!-- Aquí se renderizarán las tareas dinámicamente -->
-            </div>
-        </section>
-    </main>
+    <li>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-blue-500 hover:translate-x-1">
+        🗂 Categorías
+      </a>
+    </li>
 
-    <script src="app.js"></script>
+    <li>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-blue-500 hover:translate-x-1">
+        ⚙ Ajustes
+      </a>
+    </li>
+    <li><button
+      id="toggle-dark"
+      class="mt-6 px-4 py-2 rounded bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:scale-105 hover:shadow-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition duration-200 text-lg">
+      Modo Oscuro
+    </button></li>
+    
+
+  </ul>
+  
+</nav>
+
+</aside>
+
+  <!-- Main -->
+  <main class="flex-1 ml-60 p-6 bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    
+
+    <!-- Formulario -->
+    <form id="form-tarea" class="flex gap-4 mb-4 mt-14">
+      <input
+        type="text"
+        id="input-tarea"
+        placeholder="Nueva tarea..."
+        class="flex-1 p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-300 dark:bg-gray-800 border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-lg">
+
+      <select
+        id="select-prioridad"
+        class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-300 dark:bg-gray-800 border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-lg">
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+      </select>
+
+      <button
+  type="submit"
+  class="px-5 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition duration-200 text-lg">
+  Añadir
+</button>
+    </form>
+
+    <!-- Buscador -->
+    <input
+      type="text"
+      id="buscar-tarea"
+      placeholder="Buscar..."
+      class="w-full p-3 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-300 dark:bg-gray-800 border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-lg">
+
+    <!-- Lista de tareas -->
+    <div id="lista-tareas" class="space-y-3 text-lg"></div>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
